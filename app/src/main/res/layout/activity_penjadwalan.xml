@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PenjadwalanActivity">
+
+    <ImageView
+        android:id="@+id/backButton2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/back"
+        android:contentDescription="Back Button" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/startTimeButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:backgroundTint="#75A395"
+            android:textSize="12dp"
+            android:padding="16dp"
+            android:textColor="@color/putih"
+            android:text="Select Start Time"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:onClick="onStartClick"
+            android:layout_marginEnd="6dp"/>
+
+        <Button
+            android:id="@+id/endTimeButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:backgroundTint="#75A395"
+            android:padding="16dp"
+            android:textSize="12dp"
+            android:textColor="@color/putih"
+            android:layout_marginStart="6dp"
+            android:text="Select End Time"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:onClick="onStartClick" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#75A395"
+            android:padding="16dp"
+            android:textSize="13sp"
+            android:textColor="@color/putih"
+            android:text="Save"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:onClick="onSaveClick" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/deleteHistoryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#75A395"
+            android:padding="16dp"
+            android:textSize="13sp"
+            android:textColor="@color/putih"
+            android:text="Delete History"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:onClick="onDeleteClick" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Riwayat Penjadwalan"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

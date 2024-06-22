@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "583175941176",
+    "firebase_url": "https://smartserver-70a38-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smartserver-70a38",
+    "storage_bucket": "smartserver-70a38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583175941176:android:435f9a6a7f4b39a4780acd",
+        "android_client_info": {
+          "package_name": "com.example.smartmonitoringdancontrollingdatacenter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm1NTKAvVY21X_A19FFb-eTBb1DXyTthw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
