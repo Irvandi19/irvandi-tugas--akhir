@@ -28,6 +28,10 @@ class MainActivityBeranda : AppCompatActivity() {
     private lateinit var acAutoImage: ImageView
     private lateinit var acManualImage: ImageView
 
+    private var isLampAutoOn = false
+    private var isACAutoOn = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_beranda)
@@ -68,39 +72,40 @@ class MainActivityBeranda : AppCompatActivity() {
                     val lampStatus = dataSnapshot.child("saklarLampu").value.toString()
                     val acStatus = dataSnapshot.child("saklarAC").value.toString()
                     val doorStatus = dataSnapshot.child("saklarPintu").value.toString()
-
                     val lampAutoStatus = dataSnapshot.child("saklarLampuOTO").value.toString()
                     val acAutoStatus = dataSnapshot.child("saklarACoto").value.toString()
 
-                    // Set status saklar sesuai dengan data terbaru dari Firebase
                     switchLamp.isChecked = (lampStatus == "on")
                     switchAC.isChecked = (acStatus == "on")
                     switchPintu.isChecked = (doorStatus == "kunci")
+                    isLampAutoOn = (lampAutoStatus == "on")
+                    isACAutoOn = (acAutoStatus == "on")
 
-                    // Update image visibility based on auto status
-                    if (lampAutoStatus == "on") {
+                    if (isLampAutoOn) {
                         lampAutoImage.visibility = ImageView.VISIBLE
                         lampManualImage.visibility = ImageView.GONE
+                        switchLamp.isChecked = true
+
                     } else {
                         lampAutoImage.visibility = ImageView.GONE
                         lampManualImage.visibility = ImageView.VISIBLE
                     }
 
-                    if (acAutoStatus == "on") {
+                    if (isACAutoOn) {
                         acAutoImage.visibility = ImageView.VISIBLE
                         acManualImage.visibility = ImageView.GONE
+                        switchAC.isChecked = true
+
                     } else {
                         acAutoImage.visibility = ImageView.GONE
                         acManualImage.visibility = ImageView.VISIBLE
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 println("The read failed: " + databaseError.code)
             }
         })
-
         // Menangani pembaruan data sensor
         database.child("sensors").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -132,28 +137,19 @@ class MainActivityBeranda : AppCompatActivity() {
 
         // Menangani saklar
         switchLamp.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                relaysRef.child("saklarLampu").setValue("on")
-            } else {
-                relaysRef.child("saklarLampu").setValue("off")
+            if (!isLampAutoOn) {
+                relaysRef.child("saklarLampu").setValue(if (isChecked) "on" else "off")
             }
         }
 
         switchAC.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                relaysRef.child("saklarAC").setValue("on")
-            } else {
-                relaysRef.child("saklarAC").setValue("off")
+            if (!isACAutoOn) {
+                relaysRef.child("saklarAC").setValue(if (isChecked) "on" else "off")
             }
         }
 
         switchPintu.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                relaysRef.child("saklarPintu").setValue("kunci")
-            } else {
-                relaysRef.child("saklarPintu").setValue("buka")
-            }
+            relaysRef.child("saklarPintu").setValue(if (isChecked) "kunci" else "buka")
         }
-
     }
 }
