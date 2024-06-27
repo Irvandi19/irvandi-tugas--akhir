@@ -19,7 +19,7 @@ class KameraActivity : AppCompatActivity() {
         mjpegSurfaceView = findViewById(R.id.mjpegViewDefault)
 
         // Replace with your ESP32-CAM URL
-        val url = "http://192.168.144.172:81/stream"
+        val url = "http://192.168.58.172:81/stream"
 
         Mjpeg.newInstance()
             .open(url, 2) // Timeout after 5 seconds
